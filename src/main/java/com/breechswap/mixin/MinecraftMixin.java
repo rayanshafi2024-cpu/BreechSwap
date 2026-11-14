@@ -15,7 +15,7 @@ public abstract class MinecraftMixin {
         Minecraft client = (Minecraft) (Object) this;
         if (BreechSwapClient.isEnabled() && client.player != null) {
             int slot = BreechSwapClient.getMaceSlotZeroBased();
-            client.player.getInventory().selected = slot;
+            client.player.getInventory().setSelectedSlot(slot);
             // Send the held-slot update immediately so it reaches the server before the attack packet.
             client.player.connection.send(new ServerboundSetCarriedItemPacket(slot));
         }
